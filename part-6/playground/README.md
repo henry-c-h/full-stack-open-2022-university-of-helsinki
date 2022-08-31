@@ -1,0 +1,25 @@
+# notes
+
+- The flux architecture: action -> dispatcher -> store -> view
+- The state of an application is stored as a JavaScript object into a _store_.
+- The impact of an action is defined using a _reducer_, which is a function that takes the current state and an action as parameters, and returns a new state.
+- Reducer is not directly called. It is given as a parameter to a function that creates store.
+- When an action occurs, it is dispatch to the store and handled using the reducer.
+- The _subscribe_ method is used to create a callback function the store calls whenever an action is dispatched to the store.
+- Redux reducers must be pure functions.
+- Reducer state should be immutable.
+- Action creators are functions that return actions.
+- _react-redux_ library can help share the store with all components.
+- _useDispatch_ hook provides a React component access to the dispatch function of the store defined in index.js
+- A component can access the state in the store using the _useSelector_ hook
+- _useSelector_ will force the component to re-render if there are changes in its values after actions are dispatched.
+- _combineReducers_ function can be used to combine reducers into one reducer. Also, every actions gets handled in each part of the combined reducer.
+- _Redux Toolkit_ simplies the configuration of redux store.
+- _Redux Toolkit_ utilizes the _Immer_ library with reducers created by _createSlice_ function, allowing a mutated state within reducer.
+- _createSlice_ automatically generates action creators and action types
+- _Redux thunk_ makes it possible for action creators to return a function instead of an object. It can help move async operations away from components by passing in async functions to dispatch (normally it has to be an object); this function receives the store's _dispatch_ and _getState_ methods as params. In this way, async operations can execute to completion, after which actions can be dispatched.
+- The _connect_ function can map redux state into a React component's props. But prefer the hook-api (_useDispatch_ and _useSelector_) in new projects.
+- _connect_ takes _mapStateToProps_ function and _mapDispatchToProps_ function as the first parameter group
+- _mapStateToProps_ takes the Redux store state as parameter and returns the props need to pass down to components for rendering; _mapDispatchToProps_ takes the dispatch method from the store and returns the props in components that depend on the dispatch method
+- One way to structure React applications is to divide into presentational and container components.
+- A connected component is a higher-order component, which takes a normal component and returns a new component; this is used less due to the hook-api.
