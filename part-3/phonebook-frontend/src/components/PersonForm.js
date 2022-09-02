@@ -42,6 +42,15 @@ const PersonForm = ({ persons, setPersons, setMessage }) => {
               setPersons((prev) =>
                 prev.filter((person) => person.id !== updatedPerson.id),
               );
+            } else if (error.response.status === 400) {
+              setMessage({
+                isError: true,
+                content: `${error.response.data.error}`,
+              });
+              setTimeout(
+                () => setMessage({ isError: false, content: '' }),
+                5000,
+              );
             }
           });
       }
@@ -50,14 +59,20 @@ const PersonForm = ({ persons, setPersons, setMessage }) => {
         name: newName,
         number: newNumber,
       };
-      services.createNew(newPerson).then((newPerson) => {
-        setPersons((prev) => [...prev, newPerson]);
-        setMessage((prev) => ({ ...prev, content: `Added ${newPerson.name}` }));
-        setTimeout(
-          () => setMessage((prev) => ({ ...prev, content: '' })),
-          5000,
-        );
-      });
+      services
+        .createNew(newPerson)
+        .then((newPerson) => {
+          setPersons((prev) => [...prev, newPerson]);
+          setMessage({ isError: false, content: `Added ${newPerson.name}` });
+          setTimeout(() => setMessage({ isError: false, content: '' }), 5000);
+        })
+        .catch((error) => {
+          setMessage({
+            isError: true,
+            content: `${error.response.data.error}`,
+          });
+          setTimeout(() => setMessage({ isError: false, content: '' }), 5000);
+        });
     }
     setNewName('');
     setNewNumber('');

@@ -23,7 +23,7 @@ const Persons = ({ persons, setPersons, filter }) => {
     <div>
       {persons.filter(filterNames).map((person) => (
         <Person
-          key={person.name}
+          key={person.id}
           person={person}
           handleDelete={() => handleDelete(person)}
         />
