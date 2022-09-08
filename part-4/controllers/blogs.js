@@ -30,7 +30,8 @@ blogsRouter.post('/', userExtractor, async (request, response, next) => {
     const savedBlog = await blog.save();
     dbUser.blogs = [...dbUser.blogs, savedBlog._id];
     await dbUser.save();
-    response.status(201).json(savedBlog);
+    const populatedBlog = await Blog.findById(savedBlog._id).populate('user');
+    response.status(201).json(populatedBlog);
   } catch (exception) {
     next(exception);
   }
@@ -62,7 +63,7 @@ blogsRouter.put('/:id', async (request, response, next) => {
 
     const updatedBlog = await Blog.findByIdAndUpdate(request.params.id, body, {
       new: true,
-    });
+    }).populate('user');
     response.json(updatedBlog);
   } catch (exception) {
     next(exception);
