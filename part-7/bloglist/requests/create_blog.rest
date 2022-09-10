@@ -1,0 +1,34 @@
+POST http://localhost:3003/api/blogs
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJvb3QiLCJpZCI6IjYzMTc0NGVlZGM1ZGU5YTAxMjA2NDNjZSIsImlhdCI6MTY2Mjc1NzUzM30.71WA7LpHJkPqdSQYYw2p4ckJE43Fa8LwDJR7cDFbCwE
+
+{
+  "title": "How to create a React Button",
+  "author": "Robin Wieruch",
+  "url": "https://www.robinwieruch.de/react-button/",
+  "likes": 5,
+  "comments": ["good article", "amazing"] 
+}
+
+###
+POST http://localhost:3003/api/blogs
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJvb3QiLCJpZCI6IjYzMTc0NGVlZGM1ZGU5YTAxMjA2NDNjZSIsImlhdCI6MTY2MjQ3MzM1Mn0.JtcdS8lMB0RxfAf0_yv0GQBEO0JgL46No8t2EXnmyjQ
+
+{
+  "title": "UI & UX Micro-Tips: Best of 2022",
+  "author": "Marc Andrew",
+  "url": "https://www.marcandrew.me/ui-ux-micro-tips-best-of-2022/?ref=jonas.io",
+  "likes": 10
+}
+
+###
+POST http://localhost:3003/api/blogs
+Content-Type: application/json
+
+{
+  "title": "How to Implement a Basic JavaScript Application",
+  "author": "Marcin Wosinek",
+  "url": "https://how-to.dev/how-to-implement-a-basic-javascript-application",
+  "likes": 1
+}
